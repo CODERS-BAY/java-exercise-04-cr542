@@ -10,5 +10,6 @@ public class Application {
 		field.addBorder();
 		field.print();
 		
+		field.getLivingNeighbors(2, 2);
 	}
 }

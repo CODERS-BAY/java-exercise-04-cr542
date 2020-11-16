@@ -26,6 +26,14 @@ public abstract class Cell {
 		this.setPosY(y);
 	}
 	
+	public boolean isAlive() {
+		return alive;
+	}
+	
+	public void setAlive(boolean status) {
+		this.alive = status;
+	}
+	
 	public String printCell() {
 		if(isBorderCell == true) {
 			return "+";

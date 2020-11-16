@@ -12,6 +12,17 @@ public class Field {
 	private final int COLS = MAX_X + 2;
 	
 	private Cell[][] field = new Cell[COLS][ROWS];
+	
+	private static int[][] directions = {
+			{-1, -1},	// top left
+			{-1, 0},	// top center
+			{-1, 1},	// top right
+			{0, -1},	// left
+			{0, 1},		// right
+			{1, -1},	// bottom left
+			{1, 0},		// bottom center
+			{1, 1}		// bottom right
+	};
     
 	public void initialize() {
 		for(int i = 0; i < COLS; i++) {
@@ -52,6 +63,43 @@ public class Field {
 				field[i][ROWS-1] = new BorderCell(0, (ROWS-1));
 			}
 		}		
+	}
+	
+	public int getLivingNeighbors(int xPos, int yPos) {
+		int count = 0;
+		
+//		Adding one to the index because of border :-)
+		int xStart = xPos + 1;
+		int yStart = yPos + 1;
+		
+		int xPointer, yPointer;
+			
+		System.out.println();
+		System.out.println("[+] Checking Cell["+xStart+"]["+yStart+"] ...");
+		System.out.println();
+		
+		for(int i = 0; i < directions.length; i++) {
+			xPointer = directions[i][0];
+			yPointer = directions[i][1];
+			
+			int cellPosX = xStart + xPointer;
+			int cellPosY = yStart + yPointer;
+			
+			System.out.println("[+] Checking field["+cellPosX+"]["+cellPosY+"] ...");
+			
+			if(!field[cellPosX][cellPosY].isBorderCell) {
+				if(field[cellPosX][cellPosY].isAlive()) {
+					count++;
+					System.out.println("[+] Found one living Neighbor. Current count is: "+count);
+					System.out.println();
+				}
+			}
+			
+		}
+		
+		System.out.println();
+		System.out.println("[+] Operation finished for Cell["+xStart+"]["+yStart+"] ...\n[+] Neighbors alive: " + count);
+		return count;
 	}
 	
 	
