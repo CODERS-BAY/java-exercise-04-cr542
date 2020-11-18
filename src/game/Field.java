@@ -5,6 +5,8 @@ import java.util.Random;
 import game.Cell;
 
 public class Field {
+	
+//	Feel free to change the values as you wish (MAX_X and MAX_Y);
 	private final int MAX_X = 3;
 	private final int MAX_Y = 3;
 	
@@ -45,6 +47,11 @@ public class Field {
 		}
 	}
 	
+	public Cell getCell(int posX, int PosY) {
+		
+		return;
+	}
+	
 	public boolean coinFlip() {
 		int coin = new Random().nextInt(2);
 		if(coin == 1) { 
@@ -68,7 +75,7 @@ public class Field {
 	public int getLivingNeighbors(int xPos, int yPos) {
 		int count = 0;
 		
-//		Adding one to the index because of border :-)
+//		Adding one to the index because of the border :-)
 		int xStart = xPos + 1;
 		int yStart = yPos + 1;
 		
