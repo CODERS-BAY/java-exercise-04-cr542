@@ -47,10 +47,10 @@ public class Field {
 		}
 	}
 	
-	public Cell getCell(int posX, int PosY) {
-		
-		return;
-	}
+//	public Cell getCell(int posX, int PosY) {
+//		TODO add method
+//		return;
+//	}
 	
 	public boolean coinFlip() {
 		int coin = new Random().nextInt(2);
