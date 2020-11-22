@@ -7,8 +7,8 @@ import game.Cell;
 public class Field {
 	
 //	Feel free to change the values as you wish (MAX_X and MAX_Y);
-	private final int MAX_X = 3;
-	private final int MAX_Y = 3;
+	private final int MAX_X = 8;
+	private final int MAX_Y = 8;
 	
 //	Adding fields for creating border
 	private final int ROWS = MAX_Y + 2;
