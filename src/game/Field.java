@@ -10,47 +10,55 @@ public class Field {
 	private final int MAX_X = 3;
 	private final int MAX_Y = 3;
 	
-	public final int ROWS = MAX_Y + 2;
+//	Adding fields for creating border
+	private final int ROWS = MAX_Y + 2;
 	private final int COLS = MAX_X + 2;
 	
 	private Cell[][] field = new Cell[COLS][ROWS];
-	
-	private static int[][] directions = {
-			{-1, -1},	// top left
-			{-1, 0},	// top center
-			{-1, 1},	// top right
-			{0, -1},	// left
-			{0, 1},		// right
-			{1, -1},	// bottom left
-			{1, 0},		// bottom center
-			{1, 1}		// bottom right
-	};
     
-	public void initialize() {
+	
+//	TODO Find a way to let the user define how big the game field is.
+//	Until I implement a solution for this, I will use the standard constructor.
+	
+	public Field() {		
 		for(int i = 0; i < COLS; i++) {
 			for(int k = 0; k < ROWS; k++) {
 				field[i][k] = new LivingCell(i, k, coinFlip());
 			}
 		}
+		this.addBorder();
+		System.out.println("[+] Game field created successfully.");
+		System.out.println();
+		System.out.println("Erklärung: 0 = lebende Zelle, X = tote Zelle, + = Border");
+		this.print();
+	}
+	
+	public Cell[][] getField() {
+		return field;
+	}
+	
+	public int getLengthX() {
+		return COLS;
+	}
+	
+	public int getLengthY() {
+		return ROWS;
 	}
 	
 	public void print() {
-		
-		System.out.println("Erklärung: 0 = lebende Zelle, X = tote Zelle, + = Border");
-		System.out.println();
-		
+		System.out.println("[+] New game field: \n");
 		for(int i = 0; i < COLS; i++) {
 			for(int k = 0; k < ROWS; k++) {
 				System.out.print(field[i][k].printCell());
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 	
-//	public Cell getCell(int posX, int PosY) {
-//		TODO add method
-//		return;
-//	}
+	public Cell getCell(int posX, int posY) {
+		return field[posX][posY];
+	}
 	
 	public boolean coinFlip() {
 		int coin = new Random().nextInt(2);
@@ -71,43 +79,5 @@ public class Field {
 			}
 		}		
 	}
-	
-	public int getLivingNeighbors(int xPos, int yPos) {
-		int count = 0;
 		
-//		Adding one to the index because of the border :-)
-		int xStart = xPos + 1;
-		int yStart = yPos + 1;
-		
-		int xPointer, yPointer;
-			
-		System.out.println();
-		System.out.println("[+] Checking Cell["+xStart+"]["+yStart+"] ...");
-		System.out.println();
-		
-		for(int i = 0; i < directions.length; i++) {
-			xPointer = directions[i][0];
-			yPointer = directions[i][1];
-			
-			int cellPosX = xStart + xPointer;
-			int cellPosY = yStart + yPointer;
-			
-			System.out.println("[+] Checking field["+cellPosX+"]["+cellPosY+"] ...");
-			
-			if(!field[cellPosX][cellPosY].isBorderCell) {
-				if(field[cellPosX][cellPosY].isAlive()) {
-					count++;
-					System.out.println("[+] Found one living Neighbor. Current count is: "+count);
-					System.out.println();
-				}
-			}
-			
-		}
-		
-		System.out.println();
-		System.out.println("[+] Operation finished for Cell["+xStart+"]["+yStart+"] ...\n[+] Neighbors alive: " + count);
-		return count;
-	}
-	
-	
 }

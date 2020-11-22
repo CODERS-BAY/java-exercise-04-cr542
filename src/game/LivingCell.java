@@ -8,8 +8,5 @@ public class LivingCell extends Cell {
 		this.alive = alive;
 	}
 	
-	public void kill() {
-		this.setAlive(false);
-	}	
-	
+
 }
