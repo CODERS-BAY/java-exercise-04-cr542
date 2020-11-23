@@ -79,5 +79,42 @@ public class Field {
 			}
 		}		
 	}
+	
+	
+	public void play(int rounds) {
+		int currentRound = 0;
+		do {
+			for (int i = 0; i < this.getLengthX(); i++) {
+				for (int j = 0; j < this.getLengthY(); j++) {
+					Cell actual = this.getCell(i, j);
+					if(!actual.isBorderCell) {
+						if(actual.isAlive()) {
+							if(actual.getLivingNeighbors(this, i, j) == 2 || actual.getLivingNeighbors(this, i, j) == 3) {
+								System.out.println("[+] Cell ["+i+"]["+j+"] stays alive ...");
+								System.out.println();
+							} else if(!actual.isAlive() && (actual.getLivingNeighbors(this, i, j) >= 3)) {
+								System.out.println("[+] Cell ["+i+"]["+j+"] is dead, but gets revived ...");
+								System.out.println();
+								actual.revive();
+							} else {
+								System.out.println("[+] Cell ["+i+"]["+j+"] gets killed ...");
+								System.out.println();
+								actual.kill();
+							}
+						} else {
+							System.out.println("[+] Cell ["+i+"]["+j+"] is already dead ...");
+						} 
+					} 	
+				}
+			}
+			System.out.println();
+			System.out.println(" ====================== ");
+			System.out.println();
+			this.print();
+			currentRound++;
+			
+		} while(currentRound < rounds);
+	
+	}
 		
 }
