@@ -65,14 +65,8 @@ public abstract class Cell {
 	}
 	
 	public int getLivingNeighbors(Field field, int xPos, int yPos) {
-		int count = 0;
-		
-//		Adding one to the index because of the border :-)
-//		int xStart = xPos + 1;
-//		int yStart = yPos + 1;
-		
-		int xPointer, yPointer;
-			
+		int count = 0;		
+		int xPointer, yPointer;	
 		
 		for(int i = 0; i < directions.length; i++) {
 			xPointer = directions[i][0];
